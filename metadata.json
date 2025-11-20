@@ -1,0 +1,7 @@
+{
+  "name": "Ludus Vitae",
+  "description": "A gamified operating system for the self. Ludus Vitae combines RPG mechanics with behavioral psychology to track fitness, charisma, and wisdom.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
