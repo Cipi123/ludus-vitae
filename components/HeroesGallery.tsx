@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Hero, UserStats, StatType, HeroSkill } from '../types';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
@@ -60,12 +59,12 @@ const HeroCard: React.FC<HeroCardProps> = ({ hero, userStats, onAdoptSkill }) =>
   ];
 
   // Calculate dynamic max for the chart domain to accommodate legendary stats (e.g. 300)
-  const heroMaxStat = Math.max(...Object.values(hero.stats));
+  const heroMaxStat = Math.max(...(Object.values(hero.stats) as number[]));
   const chartDomainMax = Math.max(heroMaxStat, 100);
 
   // Calculate total stat gap
-  const userTotal = Object.values(userStats.attributes).reduce((a, b) => a + b, 0);
-  const heroTotal = Object.values(hero.stats).reduce((a, b) => a + b, 0);
+  const userTotal = (Object.values(userStats.attributes) as number[]).reduce((a, b) => a + b, 0);
+  const heroTotal = (Object.values(hero.stats) as number[]).reduce((a, b) => a + b, 0);
   const percentMatch = Math.min(100, Math.round((userTotal / heroTotal) * 100));
   
   // Level Gap Estimation - Scale target level based on max stat
@@ -190,8 +189,10 @@ const HeroCard: React.FC<HeroCardProps> = ({ hero, userStats, onAdoptSkill }) =>
            <h4 className="text-[10px] text-gray-400 uppercase tracking-widest mb-2 font-bold">Stat Comparison</h4>
            <div className="grid grid-cols-5 gap-2">
             {Object.values(StatType).map((stat) => {
-               const userVal = userStats.attributes[stat];
-               const heroVal = hero.stats[stat];
+               // Explicitly cast stat to StatType to avoid TS errors
+               const statKey = stat as StatType;
+               const userVal = userStats.attributes[statKey];
+               const heroVal = hero.stats[statKey];
                const diff = userVal - heroVal;
                const isEqual = diff === 0;
                const isHigher = diff > 0;

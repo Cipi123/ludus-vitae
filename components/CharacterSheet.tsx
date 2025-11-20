@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { UserStats, StatType, CustomAttribute } from '../types';
@@ -393,9 +392,17 @@ const CharacterSheet: React.FC<Props> = ({ user, onSelectStat, onAddCustomStat, 
   );
 };
 
-const StatSummaryCard = ({ stat, value, icon, color, bgColor, onClick, onConsult }: { 
-  stat: string, value: number, icon: React.ReactNode, color: string, bgColor: string, onClick: () => void, onConsult: () => void
-}) => {
+interface StatSummaryCardProps {
+  stat: string;
+  value: number;
+  icon: React.ReactNode;
+  color: string;
+  bgColor: string;
+  onClick: () => void;
+  onConsult: () => void;
+}
+
+const StatSummaryCard: React.FC<StatSummaryCardProps> = ({ stat, value, icon, color, bgColor, onClick, onConsult }) => {
   return (
     <div className="relative flex items-center group/card">
       <button 

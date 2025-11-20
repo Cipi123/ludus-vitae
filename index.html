@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,139 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#020617">
     <title>Ludus Vitae</title>
     <link rel="manifest" href="/manifest.json">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              // Solo Leveling Palette: System Blue & Abyss
-              'void': '#020617', // Slate-950 (Deep Blue Black)
-              'void-light': '#0f172a', // Slate-900
-              'gold': '#3b82f6', // Blue-500 (The "System" Glow) - Replacing Gold variable name to keep code working but changing color
-              'gold-dim': '#1d4ed8', // Blue-700
-              'system-blue': '#3b82f6',
-              'system-red': '#ef4444', // For penalties/danger
-              'sanctuary': '#2dd4bf', 
-              'sanctuary-dark': '#134e4a',
-              'str': '#ef4444', // Red
-              'dex': '#3b82f6', // Blue
-              'int': '#a855f7', // Purple
-              'cha': '#ec4899', // Pink
-              'con': '#22c55e', // Green
-            },
-            fontFamily: {
-              sans: ['Rajdhani', 'sans-serif'], // The HUD Font
-              mono: ['Fira Code', 'monospace'],
-            },
-            animation: {
-              'fade-in': 'fadeIn 0.5s ease-out',
-              'slide-in': 'slideIn 0.3s ease-out',
-              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'float': 'float 6s ease-in-out infinite',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              slideIn: {
-                '0%': { transform: 'translateY(-20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
-            },
-            boxShadow: {
-              'system': '0 0 15px rgba(59, 130, 246, 0.3), inset 0 0 10px rgba(59, 130, 246, 0.1)',
-              'system-hover': '0 0 25px rgba(59, 130, 246, 0.6), inset 0 0 15px rgba(59, 130, 246, 0.2)',
-            }
-          }
-        }
-      }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
-      body {
-        background-color: #020617;
-        color: #e2e8f0;
-        font-family: 'Rajdhani', sans-serif;
-        overflow-x: hidden;
-      }
-      
-      /* Solo Leveling System Box Style */
-      .system-window {
-        background: rgba(2, 6, 23, 0.85);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(59, 130, 246, 0.4);
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
-        position: relative;
-      }
-      .system-window::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; height: 1px;
-        background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-      }
-      .system-window::after {
-        content: '';
-        position: absolute;
-        bottom: 0; left: 0; right: 0; height: 1px;
-        background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-      }
-
-      .glass {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(59, 130, 246, 0.2);
-      }
-
-      /* Text Glow Utilities */
-      .text-glow {
-        text-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
-      }
-      
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #020617; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e3a8a; 
-        border-radius: 0px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #3b82f6; 
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #1e293b;
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "idb": "https://aistudiocdn.com/idb@^8.0.3",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
     "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
-    "idb": "https://cdn.jsdelivr.net/npm/idb@7/+esm",
-    "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
-    "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
-    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

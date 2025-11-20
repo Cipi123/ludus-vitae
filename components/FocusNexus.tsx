@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { GameState, TimeLog } from '../types';
 import { Play, Pause, RotateCcw, History, Hourglass, Skull, Calendar, Check, X, ChevronRight, Activity, Zap, Coffee, BookOpen } from 'lucide-react';
@@ -80,7 +79,8 @@ const PomodoroTimer: React.FC<{ onLogTime: (min: number, act: string, cat: strin
   const [logActivity, setLogActivity] = useState('');
   const [logCategory, setLogCategory] = useState('FOCUS');
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  // Use number instead of NodeJS.Timeout for browser compatibility
+  const timerRef = useRef<number | null>(null);
 
   const modes = {
     FOCUS: 25 * 60,
@@ -90,7 +90,7 @@ const PomodoroTimer: React.FC<{ onLogTime: (min: number, act: string, cat: strin
 
   useEffect(() => {
     if (isActive && timeLeft > 0) {
-      timerRef.current = setInterval(() => {
+      timerRef.current = window.setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (timeLeft === 0 && isActive) {
