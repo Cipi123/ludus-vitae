@@ -1,0 +1,4 @@
+[tools]
+# Rojo syncs the src/ Luau files into a Roblox place.
+# Install Aftman (https://github.com/LPGhatguy/aftman), then run `aftman install`.
+rojo = "rojo-rbx/rojo@7.4.4"

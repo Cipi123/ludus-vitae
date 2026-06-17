@@ -1,0 +1,10 @@
+# Built Roblox place / model files
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+
+# Tooling
+.DS_Store
